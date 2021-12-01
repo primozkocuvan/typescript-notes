@@ -44,7 +44,7 @@ let arr: (string|number)[] = [];
 
 ### Any type
 
-To use typescript as javascript, so without datatypes. You can declare it as any type
+To use typescript as javascript, so without datatypes. You can declare it as any type.
 
 ```typescript
 let a: any = 'hello';
@@ -85,7 +85,7 @@ When selecting an HTML element in the DOM, it can be null so with the sign '!' a
 let ele = document.querySelector('a')!;
 ```
 ###  As
-By using `as` keyword at the end, we can suggest which type of element we have in the DOM.
+By using `as` keyword (typecasting) at the end, we can suggest which type of element we have in the DOM.
 
 ```typescript
 let ele = document.querySelector('form') as HTMLFormElement;
@@ -102,6 +102,63 @@ class Person {
 	readonly birthday: number;
 	
 	// At the readonly we cannot change it outside or inside the class. It is fixed.
+}
+
+```
+
+### Export classes from other files
+
+By structuring the project we can have multiple classes in multiple files. By the keyword `export` before class, we export this class for usage in other files.
+
+File `personClass.ts`
+
+```typescript
+export class Person {
+	name: string;
+	age: number;
+	
+	constructor(name: string, age: number){
+		this.name = name;
+		this.age = age;
+	} 
+}
+```
+File `app.ts`
+
+Here we import the class from the file `personClass.ts`
+
+```typescript
+import { Person } from 'personClass'
+
+```
+
+### Interfaces 
+
+Interface is an abstract blueprint for defining other classes. We can implement specific Interface by using the keyword `implements`. 
+
+```typescript
+interface Person {
+	greeting (name: string): string; 
+}
+
+class Engineer implements Person {
+	
+	greeting (name: string): string => {
+		return `Hello my name is ${name} and I am an engineer!`
+	}
+}
+```
+### Enums
+
+Enums or enumeration associates a constant to a number type. 
+
+```typescript
+enum Books { HISTORY, BIOLOGY, CHEMISTRY, NOVEL }
+
+let person = {
+	name: "Fred",
+	age: 30,
+	book: Books.NOVEL;
 }
 
 ```
